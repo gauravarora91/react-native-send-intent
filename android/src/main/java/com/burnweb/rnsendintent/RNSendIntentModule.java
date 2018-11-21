@@ -640,12 +640,13 @@ public class RNSendIntentModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void shareToWhatsapp(String mineType, String mediaPath) {
+    public void shareToWhatsapp(String mineType, String mediaPath, String caption) {
 
         Intent sendIntent = new Intent();
         sendIntent.setPackage("com.whatsapp");
         sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, caption);
         sendIntent.setType(mineType);
 
         Uri uri = Uri.parse(mediaPath);
